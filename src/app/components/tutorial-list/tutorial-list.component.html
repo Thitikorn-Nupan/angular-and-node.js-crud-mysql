@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="text-center p-4 mt-4">
+    {{description}}
+  </h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Order</th>
+      <th scope="col">Tutorial Id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Published</th>
+      <th class="text-center" scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="
+      let tutorial of tutorials;
+      let i = index;
+    ">
+      <th scope="row">{{i+1}}</th>
+      <td>{{tutorial.tid}}</td>
+      <td>{{tutorial.title}}</td>
+      <td>{{tutorial.description}}</td>
+      <td >{{tutorial.published}}</td>
+      <td class="text-center">
+        <!-- use ActivatedRoute class for retrieve tid param on path // routerLink="/editing/{{tutorial.tid}}" -->
+        <button class="btn btn-sm btn-dark p-2 m-lg-1" routerLink="/edit/{{tutorial.tid}}">Edit</button>
+        <!-- when clicked it had sent delete method for delete by pk //  (click)="delete(tutorial.tid , i)" -->
+        <button class="btn btn-sm btn-warning p-2" (click)="onClick(tutorial.tid , i)">Delete</button>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+
+      <td colspan="5"></td>
+      <td class="text-center">
+        <button class="btn btn-sm btn-danger p-2" (click)="onClickSecond()">Delete All</button>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

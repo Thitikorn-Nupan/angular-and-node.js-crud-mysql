@@ -1,0 +1,47 @@
+<div class="container" style="margin: 0 auto;">
+      <h2 class="text-center mt-5">
+        {{description}}
+      </h2>
+      <div class="form-holder">
+        <div class="form-content">
+
+            <form #tutorial="ngForm" (ngSubmit)="onSubmit(tutorial.value)" class="requires-validation" >
+
+              <div class="col-md-12">
+                <!-- -->
+                <input ngModel class="form-control p-2" type="text" name="title" placeholder="Title..." required>
+              </div>
+
+
+              <div class="col-md-12">
+                <!-- -->
+                <textarea ngModel class="form-control p-2 mt-1" name="description" placeholder="Description..."></textarea>
+              </div>
+
+              <div class="col-md-12 mt-3">
+                <label class="mb-3 mr-1 p-2" >Published </label>
+                <!-- -->
+                <input ngModel type="radio" class="btn-check" name="published" id="publishedT" value="true" checked>
+                <label class="btn btn-sm btn-outline-dark m-lg-1 p-1" for="publishedT" >True</label>
+                <!-- -->
+                <input ngModel type="radio" class="btn-check" name="published" id="publishedF" value="false" >
+                <label class="btn btn-sm btn-outline-dark m-lg-1 p-1" for="publishedF">False</label>
+              </div>
+
+
+              <div class="form-check">
+                <!-- -->
+                <input [(ngModel)]="confirm" class="btn btn-danger  mb-1" type="checkbox" name="confirm" value="true" id="confirm" required>
+                <label class="form-check-label m-lg-2">I confirm that all data are correct</label>
+              </div>
+
+
+              <div class="form-button mt-3">
+                <button id="submit" type="submit" class="btn btn-dark  p-2">Send</button>
+              </div>
+
+            </form>
+
+        </div>
+      </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container" style="margin: 0 auto;">
+  <h2 class="text-center mt-5">
+    {{getDescription()}}
+  </h2>
+  <div class="form-holder">
+    <div class="form-content">
+
+      <form   class="requires-validation" >
+
+        <div class="col-md-12">
+          <input class="form-control p-2" type="text" name="title" [(ngModel)]="title"  placeholder="{{tutorial.title}}">
+        </div>
+
+        <div class="col-md-12">
+          <textarea class="form-control p-2 mt-1" name="description"  [(ngModel)]="description" placeholder="{{tutorial.description}}"></textarea>
+        </div>
+
+        <div >
+          <div class="col-md-12 mt-3">
+            <label class="mb-3 mr-1 p-2" >Published </label>
+
+            <input type="radio" class="btn-check" name="published" id="publishedT" value="true"  [(ngModel)]="published"  checked>
+            <label class="btn btn-sm btn-outline-dark m-lg-1 p-1" for="publishedT" >True</label>
+
+            <input ngModel type="radio" class="btn-check" name="published" id="publishedF" value="false" [(ngModel)]="published" >
+            <label class="btn btn-sm btn-outline-dark m-lg-1 p-1" for="publishedF">False</label>
+
+          </div>
+        </div>
+
+
+        <div class="form-check ">
+          <!--
+
+              [(ngModel)]="<name attribute>"
+              it will map setter method
+
+          -->
+          <input ngModel class="btn btn-dark mb-1" type="checkbox" name="confirm" value="true" id="confirm" [(ngModel)]="confirm" required>
+          <label class="form-check-label m-lg-2">I confirm that all data are correct</label>
+        </div>
+
+
+        <div class="form-button mt-3">
+          <button id="submit" type="submit" class="btn btn-dark  p-2" (click)="onSubmit()">Edit</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!--
+
+<div class="container mt-4" style="max-width: 600px; margin: 0 auto">
+  <form class="form-control p-2" >
+    <div class="container mt-4 ">
+      <p class="text-center mt-4 p-3 rounded" style="font-size: 30px;">
+        Tutorial Form Update
+      </p>
+    </div>
+    <div class="row">
+      <div>
+        <label class="form-label mt-1 mb-1">Title</label>
+        &lt;!&ndash;
+        no need because I fetched all field and when run time it also still class entity
+        <input type="hidden" name="tid" [(ngModel)]="tid" >
+        &ndash;&gt;
+        &lt;!&ndash; can use value = "{{<some attributes>}}"&ndash;&gt;
+        <input class="form-control p-2" type="text" name="title" [value]="tutorial.title" required>
+      </div>
+
+      <div>
+        <label class="form-label mt-1 mb-1">Description</label>
+        <input class="form-control p-2" type="text"  name="description" [value]="tutorial.description"  required>
+      </div>
+
+      <div>
+        <div class="form-check form-switch mt-3" style="margin-left: 40px;">
+          &lt;!&ndash;  when called set  method [(ngModel)]="published"  checked it doesn't work &ndash;&gt;
+          &lt;!&ndash; use [checked]="tutorial.published" instead checked it does works &ndash;&gt;
+          <input class="form-check-input" type="checkbox"  name="published" [value]="tutorial.published" [checked]="tutorial.published">
+          <label class="form-check-label">Published</label>
+        </div>
+      </div>
+
+      <div class="btn-group text-center">
+        <button class="btn btn-success mt-3 mb-3 p-2" type="submit" id="send" >send</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+-->
