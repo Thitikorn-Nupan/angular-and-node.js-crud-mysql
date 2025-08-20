@@ -1,9 +1,12 @@
 module.exports = crud = {}
 const Tutorial = require('../entity/tutorial')
-class ServiceCrud {
+
+class CrudService {
+
   reads = async () => {
     return await Tutorial.findAll();
   }
+
   read = async (tid) => {
     return await Tutorial.findAll({where : {tid : tid} }).then((tutorial) => {
       if (tutorial.length !== 0) {
@@ -14,9 +17,11 @@ class ServiceCrud {
       }
     });
   }
+
   create = async (title , description , published) => {
     return await Tutorial.create({title,description,published})
   }
+
   delete = async (tid) => {
     return await Tutorial.findAll({where: {tid: tid}}).then(async (tutorial) => {
       if (tutorial.length !== 0) {
@@ -28,14 +33,14 @@ class ServiceCrud {
       }
     })
   }
+
   deleteAll = async () => {
     await Tutorial.truncate();
   }
+
   update = async (tid , title , description , published) => {
     return await Tutorial.findAll({where: {tid: tid}}).then(async (tutorial) => {
       if (tutorial.length !== 0) {
-        /*console.log('can update')
-        console.log(tid , title , description , published)*/
         return await Tutorial.update( {title,description,published} , {where: {tid: tid}} ).then(() => {
           return true
         })
@@ -47,6 +52,5 @@ class ServiceCrud {
 
 }
 
-const serviceCrud = new ServiceCrud()
-crud.crudOperator = serviceCrud
+crud.crudOperator = new CrudService()
 module.exports = crud

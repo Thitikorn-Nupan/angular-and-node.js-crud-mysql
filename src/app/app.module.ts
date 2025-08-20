@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TutorialHomeComponent } from './components/tutorial-home/tutorial-home.component';
@@ -28,7 +27,7 @@ import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    /* when http has error ErrorIntercept class will work*/
+    // when http has error ErrorIntercept class will work
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorIntercept,

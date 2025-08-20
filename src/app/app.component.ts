@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'lab-ag-and-node-crud-integral';
+  protected routerLinks : { key : string , value : string }[] = [
+    { key : 'home' , value:'Home'},
+    { key : 'list' , value:'Tutorial List'},
+    { key : 'form' , value:'Tutorial Form'},
+  ]
 }

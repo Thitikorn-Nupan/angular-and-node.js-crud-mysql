@@ -1,26 +1,22 @@
 const myLog = require('../log/logging')
-const myModules = require('../service/service-modules')
-
-// myLog.log.info('test') you know more than IDE !
+const myModules = require('../service/modules-service')
+const crud = require('../service/crud-service')
 const express = myModules.express
 const tutorialRouter = express.Router()
 const bodyParser = myModules.bodyParser
-const cors = myModules.cors //** cors it's very importance for angular !
-/*
-Express is for building the Rest apis
-cors provides Express middleware to enable CORS with various options.
-CORS (Cross-Origin Resource Sharing) คือ กลไกที่ทำให้ server สามารถกำหนดสิทธิการเข้าถึงทรัพยากรได้ เมื่อมีเว็บไซต์ที่มี origin (domain) อื่น ใช้ HTTP request มายัง server
-in this case 8080 port I use it for back end
-CORS เป็นกลไกที่ web browser ใช้เวลาที่ client ส่ง request ไปยัง server ที่มี domain ต่างกัน
-corsOptions เพื่อบอกว่าจะอนุญาต domain ไหนสามารถ sent http method ได้
-angular default 4200
+const cors = myModules.cors // cors it's very importance for angular !
+/**
+  Express is for building the Rest apis
+  cors provides Express middleware to enable CORS with various options.
+  CORS (Cross-Origin Resource Sharing) คือ กลไกที่ทำให้ server สามารถกำหนดสิทธิการเข้าถึงทรัพยากรได้ เมื่อมีเว็บไซต์ที่มี origin (domain) อื่น ใช้ HTTP request มายัง server
+  in this case 8080 port I use it for back end
+  CORS เป็นกลไกที่ web browser ใช้เวลาที่ client ส่ง request ไปยัง server ที่มี domain ต่างกัน
+  corsOptions เพื่อบอกว่าจะอนุญาต domain ไหนสามารถ sent http method ได้
+  angular default 4200
 */
 const corsOptions = {
   origin : 'http://localhost:4200'
 }
-
-const crud = require('../service/service-crud')
-
 tutorialRouter.use(cors(corsOptions))
 tutorialRouter.use(express.json())
 tutorialRouter.use(express.urlencoded({ extended: true }));
@@ -33,7 +29,8 @@ tutorialRouter.get('/reads' , async (req, res, next) => {
   try {
     await crud.crudOperator.reads().then(
       (result) => {
-      return res.status(202).json({
+        myLog.log.debug(`reads() method success`)
+        return res.status(202).json({
         status: "accepted",
         message: "All items successfully fetched.",
         data: result
@@ -75,7 +72,7 @@ tutorialRouter.post('/create' , async (req,res) => {
         data: result
       })
     }).catch((e) => {
-      log.warn(`cause from create(title ,description , published) method await : ${e.message}`)
+      myLog.log.warn(`cause from create(title ,description , published) method await : ${e.message}`)
       throw e
     })
   } catch (e) {
@@ -83,7 +80,6 @@ tutorialRouter.post('/create' , async (req,res) => {
       status:'method not allowed',
       message : `cause from tutorialRouter post async method (create) : ${e.message}`
     })
-    // throw myException.handlerException(`cause from routerEmployee post async method (create) : ${e.message}`) /* when find the exception == ended process*/
     throw e
   }
 })
@@ -96,7 +92,7 @@ tutorialRouter.delete('/delete/(:tid)' , async (req,res) => {
         data: result
       })
     }).catch((e) => {
-      log.warn(`cause from delete(tid) method await : ${e.message}`)
+      myLog.log.warn(`cause from delete(tid) method await : ${e.message}`)
       throw e
     })
   } catch (e) {
@@ -104,7 +100,6 @@ tutorialRouter.delete('/delete/(:tid)' , async (req,res) => {
       status:'method not allowed',
       message : `cause from tutorialRouter delete async method (delete(tid)) : ${e.message}`
     })
-    // throw myException.handlerException(`cause from routerEmployee post async method (create) : ${e.message}`) /* when find the exception == ended process*/
     throw e
   }
 })
@@ -117,7 +112,7 @@ tutorialRouter.delete('/delete-all' , async (req,res) => {
         data: true
       })
     }).catch((e) => {
-      log.warn(`cause from deleteAll() method await : ${e.message}`)
+      myLog.log.warn(`cause from deleteAll() method await : ${e.message}`)
       throw e
     })
   } catch (e) {
@@ -125,7 +120,6 @@ tutorialRouter.delete('/delete-all' , async (req,res) => {
       status:'method not allowed',
       message : `cause from tutorialRouter delete async method (deleteAll()) : ${e.message}`
     })
-    // throw myException.handlerException(`cause from routerEmployee post async method (create) : ${e.message}`) /* when find the exception == ended process*/
     throw e
   }
 })
@@ -135,16 +129,14 @@ tutorialRouter.delete('/delete-all' , async (req,res) => {
 tutorialRouter.put('/update/(:tid)' , async (req,res) => {
   try {
     const { _title ,_description ,_published } = req.body
-    /* why I use _ front of variable
-    *  because I send it like Tutorial{_tid: 10, _title: 'Java & Spring', _description: 'no comment', _published: 'false'} */
-    // console.log(_title ,_description ,_published)
+    // why I use _ front of variable because I send it like Tutorial{_tid: 10, _title: 'Java & Spring', _description: 'no comment', _published: 'false'} */
     await crud.crudOperator.update(req.params['tid'],_title ,_description ,_published).then((result) => {
       return res.status(200).json({
         status: "ok",
         data: result
       })
     }).catch((e) => {
-      log.warn(`cause from update(tid,title ,description , published) method await : ${e.message}`)
+      myLog.log.warn(`cause from update(tid,title ,description , published) method await : ${e.message}`)
       throw e
     })
   } catch (e) {
@@ -152,7 +144,6 @@ tutorialRouter.put('/update/(:tid)' , async (req,res) => {
       status:'method not allowed',
       message : `cause from tutorialRouter post async method (create) : ${e.message}`
     })
-    // throw myException.handlerException(`cause from routerEmployee post async method (create) : ${e.message}`) /* when find the exception == ended process*/
     throw e
   }
 })

@@ -1,5 +1,6 @@
 module.exports = myModules = {}
-class ServiceModules {
+
+class ModulesService {
   #express = require('express')
   #cors = require('cors')
   #path = require('path')
@@ -8,6 +9,7 @@ class ServiceModules {
   get express () {
     return this.#express
   }
+
   get cors () {
     return this.#cors
   }
@@ -15,13 +17,14 @@ class ServiceModules {
   get path () {
     return this.#path
   }
+
   get bodyParser() {
     return this.#bodyParser
   }
 
 }
-const service = new ServiceModules()
 
+const service = new ModulesService()
 myModules.express = service.express
 myModules.path = service.path
 myModules.cors = service.cors

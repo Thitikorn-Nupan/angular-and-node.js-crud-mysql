@@ -1,7 +1,6 @@
-/* Class for log message on console */
-// declare myLog object for exporting method in Logging class
-// module.exports = {}
-module.exports = myLog = {} // myLog is name variable
+/** Class for log message on console */
+// declare myLog object for exporting method in Logging class myLog is name variable
+
 class Logging {
     get #winston() { /* # it means private method */
         const {createLogger , format , transports} = require('winston')
@@ -22,10 +21,7 @@ class Logging {
     }
 }
 
-myLog.log = new Logging().log // add method to myLog object
-/*
-    Maybe like
-    myLog = {
-       log : new Logging().log
-    }
-*/
+module.exports = {
+  log :  new Logging().log
+}
+

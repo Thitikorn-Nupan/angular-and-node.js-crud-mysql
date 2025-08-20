@@ -1,13 +1,13 @@
 const dotenv = require('dotenv')
-const path = require('../service/service-modules').path
+const path = require('../service/modules-service').path
+dotenv.config({ path : path.resolve('../backend/env/.env') ,debug:true})
 
-dotenv.config({ path : path.resolve('../env/.env') })
-// console.log(path.resolve('../env/.env'))
 module.exports  = {
-  HOST:  process.env.SQLX_HOST,
-  USER:  process.env.SQLX_USERNAME,
-  PASSWORD:  process.env.SQLX_PASSWORD,
-  DB: process.env.SQLX_DATABASE,
+  HOST:  process.env.SQL_HOST,
+  PORT:  process.env.SQL_PORT,
+  USER:  process.env.SQL_USERNAME,
+  PASSWORD:  process.env.SQL_PASSWORD,
+  DB: process.env.SQL_DATABASE,
   dialect: "mysql",
   pool: {
     max: 5,

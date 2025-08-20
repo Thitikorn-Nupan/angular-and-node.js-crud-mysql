@@ -1,12 +1,12 @@
+/**
+ Tutorial {_tid: 8, _title: 'Kotlin + Andriod Studio', _description: 'https://github.com/ttknpde-v', _published: 'true'}
+*/
 class Tutorial {
 
   private _tid! : number
   private _title! : string
   private _description! : string
   private _published! : boolean
-  /*
-    Tutorial {_tid: 8, _title: 'Kotlin + Andriod Studio', _description: 'https://github.com/ttknpde-v', _published: 'true'}
-  */
 
   get tid(): number {
     return this._tid;

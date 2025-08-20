@@ -1,5 +1,6 @@
-const { DataTypes } = require('../config/configuration').sequelize
-const sequelizeConfig = require('../config/configuration').sequelizeConfig
+const { DataTypes } = require('../config/seq-configuration').sequelize
+const sequelizeConfig = require('../config/seq-configuration').sequelizeConfig
+
 const Tutorial = sequelizeConfig.define(
   'tutorials' , {
     tid : {

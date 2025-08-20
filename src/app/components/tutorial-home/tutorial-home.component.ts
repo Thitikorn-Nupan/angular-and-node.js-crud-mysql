@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./tutorial-home.component.css']
 })
 export class TutorialHomeComponent {
-  private readonly _description = 'git : ttknpde-v'
-  private readonly _subDescription = 'Mobile app developer - Web developer - Back-end developer'
+
+  private readonly _description = 'git : Thitikorn Nupan'
+  private readonly _subDescription = 'Mobile app developer - Web developer - Back-end developer - Front-end developer - Full-stack developer'
   private readonly _icon ='assets/image/avataaars.svg'
+
   get description(): string {
     return this._description;
   }
